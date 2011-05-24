@@ -1,0 +1,33 @@
+name: "Bad Robot"
+version: 0.1
+id: BadRobot
+key: BadRobot
+author_name: Steve Ivy
+author_link: http://wallrazer.com/
+static_version: 0
+description: "Selectively disallow robots from accessing blog content."
+
+callbacks:
+    build_file: $BadRobot::BadRobot::Plugin::foo
+
+options:
+    fieldsets:
+        robots:
+            label: 'Robots.txt Settings'
+    useragent:
+        type: text
+        label: "User Agent"
+        hint: "Use '*' to allow or disallow all web crawlers, 'googlebot' to allow/disallow Google, etc. See <a href='http://www.robotstxt.org/db.html'>robotstxt.org</a> for a large list of web crawlers."
+        tag: RobotsUserAgent
+        fieldset: robots
+        order: 1
+        default: '*'
+        scope: blog
+    allow:
+        type: radio
+        label: 'Allow Robots?'
+        values: 'Allow,Disallow'
+        order: 2
+        tag: RobotsAllow
+        fieldset: robots
+        scope: blog
